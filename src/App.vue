@@ -3,12 +3,16 @@
     <div class="column is-one-quarter">
       <BarraLateral/>
     </div>
-    <div class="column is-three-quarter">
+    <div class="column is-three-quarter fundo" >
       <Formulario @aoSalvarTarefa="salvarTarefa" />
 
       <div class="lista">
+        <Box v-if="listaEstaVazia">
+          Você não está muito produtivo hoje
+        </Box>
         <Tarefa v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa"/>
       </div>
+
     </div>
 
   </main>
@@ -20,20 +24,26 @@ import BarraLateral from './components/BarraLateral.vue';
 import Formulario from './components/Formulario.vue';
 import Tarefa from './components/Tarefa.vue';
 import ITarefa from './interfarces/ITarefa';
+import Box from './components/Box.vue';
 
 export default defineComponent({
   name: 'App',
-  components: { BarraLateral, Formulario, Tarefa },
+  components: { BarraLateral, Formulario, Tarefa, Box },
   data() {
             return {
                 tarefas: [] as ITarefa[]
             }
         },
-        methods: {
-            salvarTarefa (tarefa: ITarefa) {
-                this.tarefas.push(tarefa)
-            }
-        }
+  computed: {
+    listaEstaVazia () : boolean {
+      return this.tarefas.length === 0
+    }
+  },
+  methods: {
+      salvarTarefa (tarefa: ITarefa) {
+          this.tarefas.push(tarefa)
+      }
+  }
 });
 </script>
 
