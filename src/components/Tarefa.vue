@@ -5,7 +5,7 @@
                 {{tarefa.descricao || 'Tarefa sem descrição'}}
             </div>
             <div class="column">
-                <Cronometro :tempoEmSegundos="tarefa.duracaoEmSegundos"/>
+                <Cronometro :tempoEmSegundos="tarefa.duracaoEmSegundos" cor="#000"/>
             </div>
         </div>
     </Box>
@@ -29,4 +29,5 @@ import Box from './Box.vue';
         
     })
 </script>
+
 
